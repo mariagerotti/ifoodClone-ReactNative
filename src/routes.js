@@ -8,6 +8,7 @@ import Home from "../src/Screens/Home";
 import Busca from "../src/Screens/Busca";
 import Perfil from "../src/Screens/Perfil";
 import Pedidos from "../src/Screens/Pedidos";
+import PedidosAnteriores from "../src/Screens/PedidosAnteriores";
 import Pagamentos from "../src/Screens/Pagamentos";
 
 const Tab = createMaterialTopTabNavigator();
