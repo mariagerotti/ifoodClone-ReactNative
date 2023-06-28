@@ -1,15 +1,31 @@
 import React from "react";
-
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { MaterialIcons } from "@expo/vector-icons";
-
 import Home from "../src/Screens/Home";
 import Busca from "../src/Screens/Busca";
 import Perfil from "../src/Screens/Perfil";
 import Pedidos from "../src/Screens/Pedidos";
 import Pagamentos from "../src/Screens/Pagamentos";
+
+const Tab = createMaterialTopTabNavigator();
+
+function PedidosRouter() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Pedidos" component={Pedidos} />
+      <Tab.Screen
+        name="PedidosAnteriores"
+        component={PedidosAnteriores}
+        options={{ tabBarLabel: "Pedidos Anteriores" }}
+      />
+    </Tab.Navigator>
+  );
+}
+
+
 
 const PerfilStack = createStackNavigator();
 
@@ -55,7 +71,7 @@ export default function Routes() {
         />
         <BottomTab.Screen
           name="Pedidos"
-          component={Pedidos}
+          component={PedidosRouter}
           options={{
             tabBarLabel: "Pedidos",
             tabBarIcon: ({ color }) => (

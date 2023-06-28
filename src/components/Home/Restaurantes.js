@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 
-import api from '../../Services/api';
+import api from '../../services/api';
 
 export default function Restaurantes() {
   const [restaurantes, setRestaurantes] = useState([]);

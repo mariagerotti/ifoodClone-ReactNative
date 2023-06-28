@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import api from '../../Services/api';
+import api from '../../services/api';
 
 export default function Sugestoes() {
   const [sugestoes, setSugestoes] = useState([]);

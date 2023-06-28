@@ -7,7 +7,7 @@ import {
   View,
   StyleSheet,
 } from 'react-native';
-import api from '../../Services/api';
+import api from '../../services/api';
 
 export default function Categorias() {
   const [categorias, setCategorias] = useState([]);

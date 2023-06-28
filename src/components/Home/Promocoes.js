@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Image, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
-import api from '../../Services/api';
+import api from '../../services/api';
 
 export default function Promocoes({ navigation }) {
   const [promocoes, setPromocoes] = useState([]);

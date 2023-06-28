@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { MaterialIcons } from '@expo/vector-icons';
+import React, { useEffect, useState } from "react";
+import { MaterialIcons } from "@expo/vector-icons";
 import {
   Image,
   ScrollView,
@@ -7,22 +7,22 @@ import {
   TouchableOpacity,
   View,
   StyleSheet,
-} from 'react-native';
+} from "react-native";
 
-import api from '../../Services/api';
-import formatNumbers from '../../helpers/formatNumbers';
+import api from "../../services/api";
+import { formatNumber } from "../../helpers/formatNumber";
 
 export default function Ofertas({ navigation }) {
   const [ofertas, setOfertas] = useState([]);
   useEffect(() => {
     async function carregarOfertas() {
-      const response = await api.get('offers');
+      const response = await api.get("offers");
       const data = response.data.map((offer) => ({
         id: offer.id,
         offer_url: offer.offer_url,
         title: offer.title,
-        newPrice: formatNumbers(offer.newPrice),
-        price: formatNumbers(offer.price),
+        newPrice: formatNumber(offer.newPrice),
+        price: formatNumber(offer.price),
         ingredients: offer.ingredients,
         delivery: offer.delivery,
         delay: offer.delay,
@@ -49,8 +49,12 @@ export default function Ofertas({ navigation }) {
         horizontal
         style={styles.lista}
       >
-        {ofertas.map((oferta) => {
-          <TouchableOpacity style={styles.item} key={oferta.id}>
+        {ofertas.map((oferta) => (
+          <TouchableOpacity
+            style={styles.item}
+            key={oferta.id}
+            onPress={() => navigation.navigate("Item", { item: oferta })}
+          >
             <Image source={{ uri: oferta.offer_url }} style={styles.imagem} />
             <View style={styles.info}>
               <Text numberOfLines={2} style={styles.titulo}>
@@ -62,8 +66,8 @@ export default function Ofertas({ navigation }) {
                 <MaterialIcons name="local-offer" size={15} color="#000" />
               </View>
             </View>
-          </TouchableOpacity>;
-        })}
+          </TouchableOpacity>
+        ))}
       </ScrollView>
     </View>
   );
@@ -75,9 +79,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 0,
   },
   header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
     marginTop: 0,
     marginRight: 10,
     marginBottom: 15,
@@ -85,13 +89,13 @@ const styles = StyleSheet.create({
   },
   titulo: {
     fontSize: 23,
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   subTitulo: {
-    color: '#999',
+    color: "#999",
   },
   vejaMais: {
-    color: 'red',
+    color: "red",
   },
   lista: {
     paddingLeft: 20,
@@ -100,35 +104,35 @@ const styles = StyleSheet.create({
     width: 200,
     marginRight: 15,
     borderWidth: 1,
-    borderStyle: 'solid',
-    borderColor: 'rbga(0,0,0, 0.06)',
+    borderStyle: "solid",
+    borderColor: "rbga(0,0,0, 0.06)",
     borderRadius: 4,
   },
   imagem: {
     height: 120,
     width: 200,
-    backgroundColor: '#000',
+    backgroundColor: "#000",
   },
   info: {
-    marginTop: 'auto',
+    marginTop: "auto",
     padding: 10,
   },
   itemPreco: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     marginTop: 10,
   },
   preco: {
-    color: 'green',
-    fontWeight: 'bold',
+    color: "green",
+    fontWeight: "bold",
     fontSize: 18,
   },
   precoAntigo: {
     marginLeft: 5,
-    fontWeight: 'bold',
-    color: '#999',
+    fontWeight: "bold",
+    color: "#999",
     fontSize: 16,
-    textDecorationLine: 'line-through',
+    textDecorationLine: "line-through",
   },
 });
